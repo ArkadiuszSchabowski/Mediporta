@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  app:
+    image: mcr.microsoft.com/dotnet/sdk:6.0
+    ports:
+      - "8080:80"
+    depends_on:
+      - database
+    environment:
+      - MediportaConnectionString=Server=database;Database=MediportaTaskDb;Trusted_Connection=True;Encrypt=False;
+
+  database:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - "1433:1433"
